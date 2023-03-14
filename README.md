@@ -5,3 +5,5 @@ CODE RULES:
 -Boolean per ogni while e do while
 -Obbligatorio commentare tutto
 -Nome delle variabili descrittivo
+-Orario di corso per i push liberi avvisare sul gruppo altre ore
+-camel case si
