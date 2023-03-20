@@ -2,7 +2,7 @@ import java.util.ArrayList;
 public class Utente{
     private String username;
     private String password;
-    private boolean admin;
+    private boolean admin=false;
     public Utente(String username,String password,String passAdmin){
         if(passAdmin.equals("ciaoAdmin")){
             admin=true;
@@ -12,7 +12,7 @@ public class Utente{
         this.username=username;
         this.password=password;
     }
-    public Utente(String username,Boolean Admin){
+    public Utente(String username,Boolean admin){
         this.admin=admin;
         this.username=username;
         
