@@ -9,7 +9,7 @@
 body {
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(bg.jpg);
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5));
     background-position: center;
     background-size: cover;
     display: flex;
@@ -152,4 +152,9 @@ body {
     .container .login-social a {
         display: block;
     }
+
+    
+}
+select{
+    border-radius: 30px;
 }
