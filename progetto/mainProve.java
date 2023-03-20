@@ -8,26 +8,28 @@ public class mainProve {
         myConnessione.startConn();
         String username;
         Utente loggato = null;
+        int temp;
+        gestioneDb myGestiore = new gestioneDb(myConnessione.getConnessione());
         do {
             if (loggato == null) {
                 switch (scanInt("Inserisci \n1:Iscriverti \n2:login")) {
                     case 1:
                         if (scanInt("Vuoi iscriverti come admin? 1:si 0:no") == 1) {
                             username = scanString("Inserisci username");
-                            myConnessione.aggiungiUtente(username, scanString("Inserisici password"),
+                            myGestiore.aggiungiUtente(username, scanString("Inserisici password"),
                                     scanString("Inserisici password admin"));
                         } else {
                             username = scanString("Inserisci username");
-                            myConnessione.aggiungiUtente(username, scanString("Inserisici password"), " ");
+                            myGestiore.aggiungiUtente(username, scanString("Inserisici password"), " ");
                         }
                         if (scanInt("Vuoi inserire animali? 1:si 0:no") == 1) {
-                            myConnessione.aggiungiAnimale(scanString("Inserisci nome animale"),
+                            myGestiore.aggiungiAnimale(scanString("Inserisci nome animale"),
                                     scanString("Inserisci razza"), scanInt("Inserisci anno di nascita"), username);
                         }
                         break;
 
                     case 2:
-                        loggato = myConnessione.login(scanString("Inserisci nome utente"),
+                        loggato = myGestiore.login(scanString("Inserisci nome utente"),
                                 scanString("Inserisci password"));
 
                         break;
@@ -37,49 +39,12 @@ public class mainProve {
                     default:
                         System.out.println("Inserimento errato");
                 }
-            }else if (loggato != null) {
+            } else if (loggato != null) {
                 System.out.println(loggato.getAdmin());
-                if (loggato.getAdmin()==true) {
-                    
-                    switch(scanInt("Inserisci \n1:Gestione prenotazioni\n2:Gestione animali\n3:gestione Utenti\n4:exit")){
-                        case 1:
-                            int temp = scanInt("Inserisci 1:accetta prenotazioni 2:elimina prenotazioni");
-                            if(temp==1){
-                                myConnessione.prenotazioniNonAccettati();
-                                myConnessione.accettaPrenotazione(scanInt("inserisci id prenotaizone"));
-                            }else if(temp==0){
-                                myConnessione.stampaPrenotazione();
-                                myConnessione.annullaPrenotazione(scanInt("Inserisci numero prenotazione da eliminare"));
-                            }
-                            break;
-                        case 2:
-
-                        case 3:
-                        case 4:
-                            loggato=null;
-                            break;
-                    }
-                }else{
-                    switch(scanInt("Inserisci \n1:Aggiungi animale\n2:Aggiungi prenotazione\n3:annulla prenotazione\n4:elimina animale\n5:exit")){
-                        case 1:
-                            myConnessione.aggiungiAnimale(scanString("Inserisci nome"), scanString("Inserisci razza"), scanInt("Inserisci anno di nascita"),loggato.getUsername());
-                            break;
-                        case 2:
-                           myConnessione.stampaAnimali(loggato.getUsername());
-                           myConnessione.aggiungiPrenotazione(loggato.getUsername(),scanString("Inserisci data AAAA-MM-GG"),scanInt("Inserisci id animale"),scanString("Inserisci una descrizione della problematic del animale"));
-                           break;
-                        case 3:
-                            myConnessione.stampaPrenotazioneUtente(loggato.getUsername());
-                            myConnessione.annullaPrenotazione(scanInt("Inserisci il numero prenotazione da eliminare"));
-                            break;
-                        case 4:
-                            myConnessione.stampaAnimali(loggato.getUsername());
-                            myConnessione.eliminaAnimale(scanInt("inserisci condice animale"));
-                            break;
-                        case 5:
-                            loggato=null;
-                            break;
-                    }
+                if (loggato.getAdmin() == true) {
+                    loggato=menu.menuAdmin(myGestiore, loggato);
+                } else {
+                    loggato=menu.menuUtente(myGestiore, loggato);
                 }
             }
 
