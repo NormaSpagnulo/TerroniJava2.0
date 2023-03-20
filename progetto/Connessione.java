@@ -43,7 +43,7 @@ public class Connessione {
         return conn;
     }
 
-    // metodo aggiunta animale all inteno database
+    // metodo aggiunta animale all interno database
     public void aggiungiAnimale(String name, String tipo, int annoNascita, String username) {
 
         boolean controllo = true;
@@ -70,7 +70,7 @@ public class Connessione {
 
     }
 
-    // metodo aggiunta utente all inteno database
+    // metodo aggiunta utente all interno database
     public void aggiungiUtente(String username, String password, String passwordAdmin) {
 
         boolean controllo = true, admin = false;
@@ -106,7 +106,7 @@ public class Connessione {
         }
 
     }
-
+    // metodo aggiunta prenotazione all'interno del database
     public void aggiungiPrenotazione(String username, String dataPrenotazione, int idAnimale, String diagnosiAnimale) {
 
         boolean controllo = true, admin = false;
@@ -133,7 +133,7 @@ public class Connessione {
             e.printStackTrace();
         }
     }
-
+      // metodo login
     public Utente login(String username, String password) {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM utente", ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -154,7 +154,7 @@ public class Connessione {
             return null;
         }
     }
-
+     //metodo di stampa animali per utente specifico
     public void stampaAnimali(String nome) {
         try {
             PreparedStatement stmt = conn.prepareStatement(
@@ -170,7 +170,7 @@ public class Connessione {
             e.printStackTrace();
         }
     }
-
+    //metodo annulla prenotazione tramite id prenotazione
     public void annullaPrenotazione(int idPrenotazione) {
         try {
             PreparedStatement stmt = conn.prepareStatement("Select * from prenotazione",
@@ -185,7 +185,7 @@ public class Connessione {
             e.printStackTrace();
         }
     }
-
+      // metodo stampa prenotazione utente di un utente specifico
     public void stampaPrenotazioneUtente(String nome) {
         try {
             PreparedStatement stmt = conn.prepareStatement(
@@ -202,7 +202,7 @@ public class Connessione {
             e.printStackTrace();
         }
     }
-
+     // metodo eliminazione animale tramite idAnimale
     public void eliminaAnimale(int idAnimale) {
         try {
 
@@ -222,7 +222,7 @@ public class Connessione {
             e.printStackTrace();
         }
     }
-
+       //metodo di prenotazioni non accettata tramite booleano
     public void prenotazioniNonAccettati() {
         try {
             PreparedStatement stmt = conn.prepareStatement(
@@ -239,7 +239,7 @@ public class Connessione {
         }
 
     }
-
+        //metodo accetta prenotazione
     public void accettaPrenotazione(int idPrenotazione) {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM prenotazione",
@@ -255,7 +255,8 @@ public class Connessione {
             e.printStackTrace();
         }
     }
-
+    
+    //metodo che stampa tutte le prenotazioni
     public void stampaPrenotazione() {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM prenotazione ",
