@@ -2,51 +2,51 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.PreparedStatement;
+
 public class gestioneDb {
     Connection conn;
-    
-    public gestioneDb(Connection conn){
-        this.conn=conn;
+    //connessione al db
+    public gestioneDb(Connection conn) {
+        this.conn = conn;
 
     }
-    public void rendiAdmin(String username){
-        try {
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM utente", ResultSet.TYPE_SCROLL_SENSITIVE,
-        ResultSet.CONCUR_UPDATABLE);
-        ResultSet resSet = stmt.executeQuery();
-        while(resSet.next()){
-        
-        if(resSet.getString(1).equals(username)){
-            resSet.updateBoolean(3,true);
-            resSet.updateRow();
-        }
-        }
-        }catch(Exception e){
-        }
-        
-    }
-    public void eliminaUtente(String username){
+    //metodo per rendere admin un utente 
+    public void rendiAdmin(String username) {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM utente", ResultSet.TYPE_SCROLL_SENSITIVE,
-            ResultSet.CONCUR_UPDATABLE);
+                    ResultSet.CONCUR_UPDATABLE);
             ResultSet resSet = stmt.executeQuery();
-            while(resSet.next()){
-            
-            if(resSet.getString(1).equals(username)){
-                resSet.deleteRow();
+            while (resSet.next()) {
+
+                if (resSet.getString(1).equals(username)) {
+                    resSet.updateBoolean(3, true);
+                    resSet.updateRow();
+                }
             }
-            }
-            }catch(Exception e){
-            }
+        } catch (Exception e) {
+        }
+
     }
-    public Utente login(String username, String password) {
-        
-        
-        
-       
-        
+    // metodo per eliminare uno specifico utente tramite username
+    public void eliminaUtente(String username) {
         try {
-            
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM utente", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            ResultSet resSet = stmt.executeQuery();
+            while (resSet.next()) {
+
+                if (resSet.getString(1).equals(username)) {
+                    resSet.deleteRow();
+                }
+            }
+        } catch (Exception e) {
+        }
+    }
+    //metodo per effettuare il login inserendo username e password
+    public Utente login(String username, String password) {
+
+        try {
+
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM utente", ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
             ResultSet resSet = stmt.executeQuery();
@@ -65,12 +65,13 @@ public class gestioneDb {
             return null;
         }
     }
-    public void stampaUtenti(){
+    //metodo che stampa tutti gli utenti 
+    public void stampaUtenti() {
         try {
             PreparedStatement stmt = conn.prepareStatement(
                     "SELECT * FROM utente;",
                     ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            
+
             ResultSet resSet = stmt.executeQuery();
             while (resSet.next()) {
                 System.out.println("Nome:" + resSet.getString(1) + "   admin: " + resSet.getBoolean(3));
@@ -79,8 +80,9 @@ public class gestioneDb {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
+
     }
+    // metodo per stampare gli animali di uno specifico utente
     public void stampaAnimaliUtente(String nome) {
         try {
             PreparedStatement stmt = conn.prepareStatement(
@@ -96,19 +98,22 @@ public class gestioneDb {
             e.printStackTrace();
         }
     }
+    //stampa tutti gli animali presenti nel db
     public void stampaAnimali() {
         try {
-            PreparedStatement stmt = conn.prepareStatement("Select * FROM animale;",ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            PreparedStatement stmt = conn.prepareStatement("Select * FROM animale;", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
             ResultSet resSet = stmt.executeQuery();
             while (resSet.next()) {
-                System.out.println("Nome:" + resSet.getString(1) + "   ID: " + resSet.getInt(3)+"   razza:   "+resSet.getString(2));
+                System.out.println("Nome:" + resSet.getString(1) + "   ID: " + resSet.getInt(3) + "   razza:   "
+                        + resSet.getString(2));
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    //metodo che annulla la prenotoazione tramite inserimento idPrenotazione
     public void annullaPrenotazione(int idPrenotazione) {
         try {
             PreparedStatement stmt = conn.prepareStatement("Select * from prenotazione",
@@ -123,7 +128,7 @@ public class gestioneDb {
             e.printStackTrace();
         }
     }
-
+    //metodo per stampare le prenotazioni di un utente inserendo il nome
     public void stampaPrenotazioneUtente(String nome) {
         try {
             PreparedStatement stmt = conn.prepareStatement(
@@ -140,7 +145,7 @@ public class gestioneDb {
             e.printStackTrace();
         }
     }
-
+    //metodo che elimina un animale inserendo l'idAnimale
     public void eliminaAnimale(int idAnimale) {
         try {
 
@@ -160,7 +165,7 @@ public class gestioneDb {
             e.printStackTrace();
         }
     }
-
+    //metodo prenotazioni non accettate
     public void prenotazioniNonAccettati() {
         try {
             PreparedStatement stmt = conn.prepareStatement(
@@ -177,7 +182,7 @@ public class gestioneDb {
         }
 
     }
-
+    //metodo accetta prenotazioni inserendo idPrenotazione
     public void accettaPrenotazione(int idPrenotazione) {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM prenotazione",
@@ -200,13 +205,16 @@ public class gestioneDb {
                     ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet resSet = stmt.executeQuery();
             while (resSet.next()) {
-                System.out.println("Nome Utente Prenotazione:" + resSet.getString(1) + "   Data prenotazione: "+ resSet.getDate(2) + "   Accettata?: " + resSet.getBoolean(6)+"   numero prenotazione:   "+resSet.getInt(5));
+                System.out.println("Nome Utente Prenotazione:" + resSet.getString(1) + "   Data prenotazione: "
+                        + resSet.getDate(2) + "   Accettata?: " + resSet.getBoolean(6) + "   numero prenotazione:   "
+                        + resSet.getInt(5));
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void aggiungiAnimale(String name, String tipo, int annoNascita, String username) {
 
         boolean controllo = true;
@@ -269,7 +277,7 @@ public class gestioneDb {
         }
 
     }
-
+    // metodo aggiunta prenotazione inserendo nomeutente, data, idAnimale e il problema
     public void aggiungiPrenotazione(String username, String dataPrenotazione, int idAnimale, String diagnosiAnimale) {
 
         boolean controllo = true, admin = false;
