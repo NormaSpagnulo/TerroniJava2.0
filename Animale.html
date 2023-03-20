@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrazione animale</title>
+  <link rel="stylesheet" href="prova.css">
+  <script>
+    function showNewSpeciesInput() {
+      var speciesSelect = document.getElementById("species");
+      var newSpeciesInput = document.getElementById("new_species");
+      if (speciesSelect.value === "altro") {
+        newSpeciesInput.style.display = "block";
+      } else {
+        newSpeciesInput.style.display = "none";
+      }
+    }
+
+    function updateAnimalImage() {
+      var speciesSelect = document.getElementById("species");
+      var animalImage = document.getElementById("animal-image");
+      var selectedValue = speciesSelect.value;
+      switch (selectedValue) {
+        case "cane":
+          animalImage.src = "https://cdn.discordapp.com/attachments/1085188406142832680/1086231899384598629/download_1.png";
+          break;
+        case "gatto":
+          animalImage.src = "https://www.example.com/images/gatto.jpg";
+          break;
+        case "criceto":
+          animalImage.src = "https://www.example.com/images/criceto.jpg";
+          break;
+        // aggiungere altri casi per le altre specie
+        default:
+          animalImage.src = "";
+          break;
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Registrazione animale</h1>
+<form action="#" method="post">
+  <section>
+    <h2>Dati dell'animale</h2>
+    <div class="animal-info">
+      <div class="animal-image-container">
+        <img id="animal-image" src="" alt="Immagine animale" class="animal-image">
+      </div>
+      <div>
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="species">Specie</label>
+        <select id="species" name="species" onchange="showNewSpeciesInput(); updateAnimalImage();" required>
+          <option value="">Seleziona una specie</option>
+          <option value="cane">Cane</option>
+          <option value="gatto">Gatto</option>
+          <option value="criceto">Criceto</option>
+          <option value="topo">Topo</option>
+          <option value="scoiattolo">Scoiattolo</option>
+          <option value="maiale">Maiale</option>
+          <option value="altro">Altro</option>
+        </select>
+      </div>
+    </div>
+    <div id="new_species" style="display: none;">
+      <label for="new_species_input">Nuova specie:</label>
+      <input type="text" id="new_species_input" name="new_species_input">
+    </div>
+
+    <label for="birthdate">Data di nascita</label>
+    <input type="date" id="birthdate" name="birthdate" required>
+    <input type="submit" value="Invia">
+  </section>
+
+</form>
+</body>
+</html>

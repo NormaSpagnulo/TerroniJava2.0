@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  max-width: 700px;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input,
+select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 10px;
+  width: 70%;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+#animal-image {
+  float: right;
+  margin-left: 20px;
+  margin-top: 10px;
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+#animal-info {
+  display: inline-block;
+  width: calc(100% - 240px); /* calcolo la larghezza in base all'immagine */
+}
