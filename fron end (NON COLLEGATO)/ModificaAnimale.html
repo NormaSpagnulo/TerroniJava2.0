@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista Prenotazioni</title>
+    <link rel="stylesheet" href="Style.css">
+	<style>
+		table {
+			
+			
+			margin-bottom: 20px;
+			border: 1px solid #ddd;
+			font-size: 18px;
+            
+		}
+
+		
+
+		
+        table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: 20px auto;
+            }
+            
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+            
+            th {
+                background-color: #4CAF50;
+                color: white;
+                font-size: 20px;
+            }
+            
+            td {
+                font-size: 16px;
+            }
+            
+
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+    
+        
+
+
+
+        <nav>
+
+                <input type="checkbox" id="menu-toggle" style="visibility: hidden; "/>
+                <label for="menu-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </label>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Animale.html">Aggiungi animale</a></li>
+                    <li><a href="ModificaAnimale.html">Modifica animali</a></li>
+                    <li><a href="Prenotazioni.html">Prenotazioni</a></li>
+                    <li><a href="Login.html">Login</a></li>
+                    <li><a href="Registrazione.html">Register</a></li>
+                    <li><a href="#">Elimina Account</a></li>
+                    <li><a href="#">Log out</a></li>
+                </ul>
+
+                <div class="logo">
+					<a href="index.html"><img src="https://cdn.discordapp.com/attachments/1085188406142832680/1087380714917466113/image.png" alt="Logo"></a>
+                        <h1 style="margin: 0px 10px">TerroniJava2.0</h1>
+                    </div>
+              </nav>
+
+
+		
+	<h1 style="margin-top: 80px; text-align: center;">Lista Animali</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID Animale</th>
+				<th>Nome</th>
+				<th>Specie</th>
+				<th>Data Nascita</th>
+				<th>Elimina Animale</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Bunny</td>
+				<td>coniglio</td>
+				<td>01/01/2020</td>
+				<td>X</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Furia</td>
+				<td>cavallo</td>
+				<td>03/01/2018</td>
+				<td>X</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Shila</td>
+				<td>cane</td>
+				<td>03/05/2017</td>
+				<td>X</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrazione persona</title>
+  <link rel="stylesheet" href="style_login.css">
+
+</head>
+<body>
+    <div class="container">
+		<form action="" method="POST" class="login-email">
+<h1>Registrazione persona</h1>
+<form action="#" method="post">
+  <section>
+    <h2>Dati della persona</h2>
+    <div class="input-group">
+        <input type="text" placeholder="Nome" name="name" value="" required>
+    </div>
+    <div class="input-group">
+        <input type="surname" placeholder="Cognome" name="surname" value="" required>
+    </div>
+    <div class="input-group">
+        <input type="email" placeholder="Email" name="email" value="" required>
+    </div>
+    <label for="pwd">Hai una password admin?</label>
+    <select id="admin-pwd" name="admin-pwd" class="input-group">
+      <option value="Inserire risposta"  selected></option>
+      <option value="yes">Si</option>
+      <option value="no" >No</option>
+    </select>
+    <div id="admin-pwd-input">
+        <div class="input-group">
+            <input type="password" placeholder="Password" name="password" value="" required>
+        </div>
+    </div>
+
+    <div id="normal-pwd-input" style="display: none;">
+        <div class="input-group">
+            <input type="date" id="birthdate" name="birthdate" required>
+        </div>
+        <div class="input-group">
+            <input type="text" placeholder="Indirizzo" name="indirizzo" value="" required>
+        </div>
+        <div class="input-group">
+            <input type="text" placeholder="Numero" name="numero" value="" required>
+        </div>
+        
+    </div>
+  </section>
+  <div class="input-group">
+    <button name="submit" class="btn">Registra</button>
+  </div>
+  <p class="login-register-text">Have an account? <a href="login.html">Login Here</a>.</p>
+</form>
+</form>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var adminPwdInput = document.getElementById("admin-pwd");
+    adminPwdInput.addEventListener("change", function() {
+      var adminPwdInputValue = adminPwdInput.value;
+      var adminPwdInputElem = document.getElementById("admin-pwd-input");
+      var normalPwdInputElem = document.getElementById("normal-pwd-input");
+
+      if (adminPwdInputValue === "yes") {
+        adminPwdInputElem.style.display = "block";
+        normalPwdInputElem.style.display = "none";
+      } else {
+        adminPwdInputElem.style.display = "block";
+        normalPwdInputElem.style.display = "block";
+      }
+    });
+  });
+
+</script>
+</body>
+</html>
