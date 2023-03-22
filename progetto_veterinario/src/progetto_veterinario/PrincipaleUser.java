@@ -16,7 +16,7 @@ public class PrincipaleUser extends JFrame {
 	private JPanel contentPane;
 	static String username;
 	static login login;
-	static PrincipaleUser frame;
+	static PrincipaleUser frame1;
 	static GestioniPrenotazioniUser gPrenotazioni;
 	/**
 	 * Launch the application.
@@ -25,9 +25,10 @@ public class PrincipaleUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new PrincipaleUser(username);
-					frame.setVisible(true);
+					frame1 = new PrincipaleUser(username);
+					frame1.setVisible(true);
 				} catch (Exception e) {
+					frame1.setVisible(false);
 					e.printStackTrace();
 				}
 			}
@@ -71,9 +72,10 @@ public class PrincipaleUser extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				login=new login();
-				login.show();
+				
+				gestione.setLoginVisible();
+				gestione.setPrincipaleUserNotVisible();
+				
 			}
 		});
 		logOut.setBounds(135, 413, 89, 23);

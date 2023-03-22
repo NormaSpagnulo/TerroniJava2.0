@@ -20,6 +20,7 @@ public class login extends JFrame {
 	private JTextField textPassword;
 	public PrincipaleUser menuUtente;
 	static login frame;
+	public userRegister registrazione;
 	/**
 	 * Launch the application.
 	 */
@@ -81,10 +82,17 @@ public class login extends JFrame {
 				myGestore=new gestioneDb(conn.getConnessione());
 				String userInserito = textUsername.getText();
 				String passInserita = textPassword.getText();
-				menuUtente= new PrincipaleUser(userInserito);  
-				if(myGestore.login(userInserito,passInserita)!=null) {
-					menuUtente.show();
-					frame.setVisible(false);
+				menuUtente= new PrincipaleUser(userInserito);
+				Utente myLoggato=myGestore.login(userInserito,passInserita);
+				if(myLoggato!=null) {
+					if(myLoggato.getAdmin()) {
+						gestione.setmenuAdminVisible();
+					}else {
+						gestione.setPrincipaleUserVisible(userInserito);
+					}
+					
+					gestione.setLoginNotVisible();
+					
 				}else {
 					labelAccesso.setText("ACCESSO NEGATO");
 				}
@@ -93,8 +101,15 @@ public class login extends JFrame {
 		btnNewButton.setBounds(199, 337, 209, 50);
 		contentPane.add(btnNewButton);
 		
-		JButton userRegistration = new JButton("Registrati");
-		userRegistration.setBounds(260, 427, 89, 23);
-		contentPane.add(userRegistration);
+		JButton userReg = new JButton("Registrati");
+		userReg.setBounds(262, 421, 91, 29);
+		contentPane.add(userReg);
+		userReg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestione.setRegisterVisible();
+				gestione.setLoginNotVisible();
+			}
+		});
+		
 	}
 }

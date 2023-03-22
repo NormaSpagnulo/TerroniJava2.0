@@ -11,14 +11,18 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class userRegister extends JFrame {
-
+	static Connessione conn=new Connessione("jdbc:mysql://localhost:3306/veterinario", "root", "root");
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
+	private JTextField fildUsername;
+	private JTextField fildPassword;
+	static gestioneDb myGestore;
+	static login myLogin=new login();
+	static userRegister frame2;
+	private JTextField passAdmin;
 	/**
 	 * Launch the application.
 	 */
@@ -26,8 +30,8 @@ public class userRegister extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					userRegister frame = new userRegister();
-					frame.setVisible(true);
+					frame2 = new userRegister();
+					frame2.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,6 +43,7 @@ public class userRegister extends JFrame {
 	 * Create the frame.
 	 */
 	public userRegister() {
+		
 		setTitle("Registrazione");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 792, 488);
@@ -48,38 +53,67 @@ public class userRegister extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel userLabel = new JLabel("Username");
+		final JLabel userLabel = new JLabel("Username");
 		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		userLabel.setBounds(28, 56, 110, 34);
 		contentPane.add(userLabel);
 		
-		JLabel passwordLabel = new JLabel("Password");
+		final JLabel passwordLabel = new JLabel("Password");
 		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		passwordLabel.setBounds(28, 166, 110, 40);
-		contentPane.add(passwordLabel);
 		
-		JCheckBox aggiungiAnimali = new JCheckBox("Vuoi inserire subito animali?");
-		aggiungiAnimali.setBounds(17, 259, 188, 23);
-		contentPane.add(aggiungiAnimali);
+		passAdmin = new JTextField();
 		
-		textField = new JTextField();
-		textField.setBounds(188, 56, 297, 34);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(188, 165, 297, 34);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		final JCheckBox admin = new JCheckBox("Hai una password Admin?");
+		admin.setBounds(17, 259, 188, 23);
+		contentPane.add(admin);
+		admin.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				
+				passAdmin.setBounds(251, 253, 297, 34);
+				contentPane.add(passAdmin);
+				boolean attivaFild=admin.isSelected();
+				passAdmin.setColumns(10);
+				passAdmin.setEnabled(attivaFild);
+				if(!attivaFild) {
+					passAdmin.setText("");
+				}
+				
+			}
+		});
+		fildUsername = new JTextField();
+		fildUsername.setBounds(251, 59, 297, 34);
+		contentPane.add(fildUsername);
+		fildUsername.setColumns(10);
+		
+		fildPassword = new JTextField();
+		fildPassword.setBounds(251, 165, 297, 34);
+		contentPane.add(fildPassword);
+		fildPassword.setColumns(10);
 		
 		JButton registrati = new JButton("Registrati");
 		registrati.addActionListener(new ActionListener() {
+			 
 			public void actionPerformed(ActionEvent e) {
+				conn.startConn();
+				myGestore = new gestioneDb(conn.getConnessione());
+				myGestore.aggiungiUtente(fildUsername.getText(),fildPassword.getText(),"");
 				
+				
+				gestione.setLoginVisible();
+				gestione.setRegisterNotVisible();
 			}
 		});
 		registrati.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		registrati.setBounds(205, 339, 372, 57);
 		contentPane.add(registrati);
+		
+		JLabel lblNewLabel = new JLabel("Password");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel.setBounds(28, 162, 92, 34);
+		contentPane.add(lblNewLabel);
+		
+		
 	}
 }
