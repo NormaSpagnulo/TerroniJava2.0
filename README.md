@@ -7,6 +7,22 @@ CODE RULES:
 -Nome delle variabili descrittivo
 -Orario di corso per i push liberi avvisare sul gruppo altre ore
 -camel case si
+
+CODE RULES:-----------------------------------------------------------------------------------------------------
+-Usare extend invece delle inner class
+----------------------------------------------------------------------------------------------------------------
+-Boolean per ogni while e do while
+----------------------------------------------------------------------------------------------------------------
+-Obbligatorio commentare tutto
+----------------------------------------------------------------------------------------------------------------
+-Nome delle variabili descrittivo
+----------------------------------------------------------------------------------------------------------------
+-Orario di corso per i push liberi avvisare sul gruppo altre ore
+----------------------------------------------------------------------------------------------------------------
+-camel case si
+----------------------------------------------------------------------------------------------------------------
+
+
 Progetto portato come progetto di fine corso, Accademy tenuta da Mirko Campari e Vincenzo Bruno.
 
 
