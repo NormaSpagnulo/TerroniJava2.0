@@ -8,7 +8,7 @@ CODE RULES:
 -Orario di corso per i push liberi avvisare sul gruppo altre ore
 -camel case si
 
-CODE RULES:-------------------------------------------------------------------------------------------
+CODE RULES:-----------------------------------------------------------------------------------------
 -Usare extend invece delle inner class
 ----------------------------------------------------------------------------------------------------------------
 -Boolean per ogni while e do while
