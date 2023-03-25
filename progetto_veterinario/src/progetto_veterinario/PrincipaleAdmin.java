@@ -2,6 +2,7 @@ package progetto_veterinario;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -45,6 +46,10 @@ public class PrincipaleAdmin extends JFrame {
 		JButton prenota = new JButton("gestione Prenotazione");
 		prenota.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gestione.setTabellaPrenotazioniVisible();
+				gestione.setMenuAdminNotVisible();
+				gestione.setEliminaPrenotazioneiVisible();
+				gestione.setAccettaPrenotazioneiVisible();
 			}
 		});
 		prenota.setBounds(61, 55, 265, 66);
@@ -53,10 +58,43 @@ public class PrincipaleAdmin extends JFrame {
 		JButton viewUtentiAdmin = new JButton("gestione Utenti");
 		viewUtentiAdmin.setBounds(61, 199, 265, 66);
 		contentPane.add(viewUtentiAdmin);
+		viewUtentiAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestione.setSelezioneVisible();
+				gestione.setTabellaUtentiVisible();
+				if(gestione.loggato.getAdmin()) {
+					gestione.setMenuAdminNotVisible();
+				}else {
+					gestione.setPrincipaleUserNotVisible();
+				}
+				gestione.setInserisciUtenteVisible();
+				
+		}});
+		JButton logOut = new JButton("Log-Out");
+		logOut.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				gestione.setLoginVisible();
+				gestione.setMenuAdminNotVisible();
+				
+			}
+		});
+		logOut.setBounds(150, 438, 100, 23);
+		contentPane.add(logOut);
 		
 		JButton viewAnimali = new JButton("gestione Animali");
 		viewAnimali.setBounds(61, 332, 265, 66);
 		contentPane.add(viewAnimali);
+		viewAnimali.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestione.setAggiungiAnimaliVisible();
+				gestione.setTabellaUtentiVisible();
+				gestione.setMenuAdminNotVisible();
+				gestione.setTabellaAnimaliVisible();
+				gestione.setEliminaAnimaliVisible();
+		}});
 	}
 
 }

@@ -66,6 +66,7 @@ public class login extends JFrame {
 		textUsername.setColumns(10);
 		
 		textPassword = new JTextField();
+		textPassword.setFont(new Font("Bookshelf Symbol 7", Font.BOLD, 11));
 		textPassword.setColumns(10);
 		textPassword.setBounds(199, 217, 264, 29);
 		contentPane.add(textPassword);
@@ -81,21 +82,23 @@ public class login extends JFrame {
 				conn.startConn();
 				myGestore=new gestioneDb(conn.getConnessione());
 				String userInserito = textUsername.getText();
-				String passInserita = textPassword.getText();
-				menuUtente= new PrincipaleUser(userInserito);
+				String passInserita = textPassword.getText();			
 				Utente myLoggato=myGestore.login(userInserito,passInserita);
+				textPassword.setText("");
+				textUsername.setText("");
+				gestione.setLoggato(myLoggato);
 				if(myLoggato!=null) {
 					if(myLoggato.getAdmin()) {
 						gestione.setmenuAdminVisible();
 					}else {
-						gestione.setPrincipaleUserVisible(userInserito);
+						gestione.setPrincipaleUserVisible();
 					}
-					
 					gestione.setLoginNotVisible();
 					
 				}else {
 					labelAccesso.setText("ACCESSO NEGATO");
 				}
+				
 			}
 		});
 		btnNewButton.setBounds(199, 337, 209, 50);

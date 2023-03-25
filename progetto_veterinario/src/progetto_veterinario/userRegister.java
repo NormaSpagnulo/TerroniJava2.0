@@ -63,7 +63,7 @@ public class userRegister extends JFrame {
 		passwordLabel.setBounds(28, 166, 110, 40);
 		
 		passAdmin = new JTextField();
-		
+		passAdmin.setFont(new Font("Bookshelf Symbol 7", Font.BOLD, 11));
 		
 		final JCheckBox admin = new JCheckBox("Hai una password Admin?");
 		admin.setBounds(17, 259, 188, 23);
@@ -88,6 +88,7 @@ public class userRegister extends JFrame {
 		fildUsername.setColumns(10);
 		
 		fildPassword = new JTextField();
+		fildPassword.setFont(new Font("Bookshelf Symbol 7", Font.BOLD, 11));
 		fildPassword.setBounds(251, 165, 297, 34);
 		contentPane.add(fildPassword);
 		fildPassword.setColumns(10);
@@ -98,11 +99,14 @@ public class userRegister extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				conn.startConn();
 				myGestore = new gestioneDb(conn.getConnessione());
-				myGestore.aggiungiUtente(fildUsername.getText(),fildPassword.getText(),"");
 				
-				
+				if(passAdmin.getText()!=null) {
+					myGestore.aggiungiUtente(fildUsername.getText(),fildPassword.getText(),passAdmin.getText());
+				}else {
+					myGestore.aggiungiUtente(fildUsername.getText(),fildPassword.getText(),"");
+				}
 				gestione.setLoginVisible();
-				gestione.setRegisterNotVisible();
+				gestione.refreshTabellaUtentiNonVisualizzare();
 			}
 		});
 		registrati.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -113,7 +117,5 @@ public class userRegister extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel.setBounds(28, 162, 92, 34);
 		contentPane.add(lblNewLabel);
-		
-		
 	}
 }

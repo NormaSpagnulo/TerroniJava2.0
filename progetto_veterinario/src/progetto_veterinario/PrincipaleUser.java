@@ -12,12 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 
 public class PrincipaleUser extends JFrame {
-	public JLabel userLabel = new JLabel(username);
+	public JLabel userLabel = new JLabel();
 	private JPanel contentPane;
-	static String username;
+	
 	static login login;
 	static PrincipaleUser frame1;
-	static GestioniPrenotazioniUser gPrenotazioni;
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +24,7 @@ public class PrincipaleUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame1 = new PrincipaleUser(username);
+					frame1 = new PrincipaleUser();
 					frame1.setVisible(true);
 				} catch (Exception e) {
 					frame1.setVisible(false);
@@ -38,10 +37,9 @@ public class PrincipaleUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PrincipaleUser(final String username) {
-		this.username=username;
+	public PrincipaleUser() {
 		setTitle("Menu Utente");
-		userLabel.setText(username);
+		userLabel.setText(gestione.loggato.getUsername());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 399, 482);
 		contentPane = new JPanel();
@@ -53,6 +51,10 @@ public class PrincipaleUser extends JFrame {
 		JButton btnNewButton = new JButton("Gestione Animali");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gestione.refreshTabellaAnimaliUtente();
+				gestione.setPrincipaleUserNotVisible();
+				gestione.setEliminaAnimaliVisible();
+				gestione.setAggiungiAnimaliVisible();
 			}
 		});
 		btnNewButton.setBounds(40, 126, 280, 67);
@@ -61,7 +63,9 @@ public class PrincipaleUser extends JFrame {
 		JButton gestionePrenotazioniUser = new JButton("Gestione prenotazioni");
 		gestionePrenotazioniUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gPrenotazioni=new GestioniPrenotazioniUser(username);
+				gestione.refreshTabellaPrenotazioniUtente();
+				gestione.setAggiungiPrenotazioniVisible();
+				gestione.setPrincipaleUserNotVisible();
 			}
 		});
 		gestionePrenotazioniUser.setBounds(40, 48, 280, 67);
