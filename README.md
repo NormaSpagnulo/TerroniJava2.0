@@ -2,7 +2,7 @@
 Gruppo formato da: Ignazio Rizzi, Marcello Pittau, Norma Spagnulo e Pierluigi Buongiorno.
 
 
-CODE RULES:-----------------------------------------------------------------------------------------
+CODE RULES:----------------------------------------------------------------------------------------------------
 -Usare extend invece delle inner class
 ----------------------------------------------------------------------------------------------------------------
 -Boolean per ogni while e do while
